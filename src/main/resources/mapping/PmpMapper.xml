@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.PmpMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.Pmp" >
+    <id column="pmpid" property="pmpid" jdbcType="INTEGER" />
+    <result column="pmpname" property="pmpname" jdbcType="VARCHAR" />
+    <result column="pmpqpj" property="pmpqpj" jdbcType="VARCHAR" />
+    <result column="pmpdj" property="pmpdj" jdbcType="VARCHAR" />
+    <result column="pmpkssj" property="pmpkssj" jdbcType="DATE" />
+    <result column="pmpjssj" property="pmpjssj" jdbcType="DATE" />
+    <result column="pmptplj" property="pmptplj" jdbcType="VARCHAR" />
+    <result column="pmptpkzm" property="pmptpkzm" jdbcType="VARCHAR" />
+    <result column="pmpms" property="pmpms" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pmpid, pmpname, pmpqpj, pmpdj, pmpkssj, pmpjssj, pmptplj, pmptpkzm, pmpms
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pmp
+    where pmpid = #{pmpid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pmp
+    where pmpid = #{pmpid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.Pmp" >
+    insert into pmp (pmpid, pmpname, pmpqpj, 
+      pmpdj, pmpkssj, pmpjssj, 
+      pmptplj, pmptpkzm, pmpms
+      )
+    values (#{pmpid,jdbcType=INTEGER}, #{pmpname,jdbcType=VARCHAR}, #{pmpqpj,jdbcType=VARCHAR}, 
+      #{pmpdj,jdbcType=VARCHAR}, #{pmpkssj,jdbcType=DATE}, #{pmpjssj,jdbcType=DATE}, 
+      #{pmptplj,jdbcType=VARCHAR}, #{pmptpkzm,jdbcType=VARCHAR}, #{pmpms,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.Pmp" >
+    insert into pmp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pmpid != null" >
+        pmpid,
+      </if>
+      <if test="pmpname != null" >
+        pmpname,
+      </if>
+      <if test="pmpqpj != null" >
+        pmpqpj,
+      </if>
+      <if test="pmpdj != null" >
+        pmpdj,
+      </if>
+      <if test="pmpkssj != null" >
+        pmpkssj,
+      </if>
+      <if test="pmpjssj != null" >
+        pmpjssj,
+      </if>
+      <if test="pmptplj != null" >
+        pmptplj,
+      </if>
+      <if test="pmptpkzm != null" >
+        pmptpkzm,
+      </if>
+      <if test="pmpms != null" >
+        pmpms,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pmpid != null" >
+        #{pmpid,jdbcType=INTEGER},
+      </if>
+      <if test="pmpname != null" >
+        #{pmpname,jdbcType=VARCHAR},
+      </if>
+      <if test="pmpqpj != null" >
+        #{pmpqpj,jdbcType=VARCHAR},
+      </if>
+      <if test="pmpdj != null" >
+        #{pmpdj,jdbcType=VARCHAR},
+      </if>
+      <if test="pmpkssj != null" >
+        #{pmpkssj,jdbcType=DATE},
+      </if>
+      <if test="pmpjssj != null" >
+        #{pmpjssj,jdbcType=DATE},
+      </if>
+      <if test="pmptplj != null" >
+        #{pmptplj,jdbcType=VARCHAR},
+      </if>
+      <if test="pmptpkzm != null" >
+        #{pmptpkzm,jdbcType=VARCHAR},
+      </if>
+      <if test="pmpms != null" >
+        #{pmpms,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.Pmp" >
+    update pmp
+    <set >
+      <if test="pmpname != null" >
+        pmpname = #{pmpname,jdbcType=VARCHAR},
+      </if>
+      <if test="pmpqpj != null" >
+        pmpqpj = #{pmpqpj,jdbcType=VARCHAR},
+      </if>
+      <if test="pmpdj != null" >
+        pmpdj = #{pmpdj,jdbcType=VARCHAR},
+      </if>
+      <if test="pmpkssj != null" >
+        pmpkssj = #{pmpkssj,jdbcType=DATE},
+      </if>
+      <if test="pmpjssj != null" >
+        pmpjssj = #{pmpjssj,jdbcType=DATE},
+      </if>
+      <if test="pmptplj != null" >
+        pmptplj = #{pmptplj,jdbcType=VARCHAR},
+      </if>
+      <if test="pmptpkzm != null" >
+        pmptpkzm = #{pmptpkzm,jdbcType=VARCHAR},
+      </if>
+      <if test="pmpms != null" >
+        pmpms = #{pmpms,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pmpid = #{pmpid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.Pmp" >
+    update pmp
+    set pmpname = #{pmpname,jdbcType=VARCHAR},
+      pmpqpj = #{pmpqpj,jdbcType=VARCHAR},
+      pmpdj = #{pmpdj,jdbcType=VARCHAR},
+      pmpkssj = #{pmpkssj,jdbcType=DATE},
+      pmpjssj = #{pmpjssj,jdbcType=DATE},
+      pmptplj = #{pmptplj,jdbcType=VARCHAR},
+      pmptpkzm = #{pmptpkzm,jdbcType=VARCHAR},
+      pmpms = #{pmpms,jdbcType=VARCHAR}
+    where pmpid = #{pmpid,jdbcType=INTEGER}
+  </update>
+</mapper>

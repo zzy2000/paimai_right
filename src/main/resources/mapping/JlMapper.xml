@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.JlMapper">
+	<select id="aaa" resultType="com.accp.vo.jingpaivo">
+		SELECT j.jpsj,j.jpjg,u.username FROM jl j JOIN USER u ON j.userid=u.userid WHERE j.pmpid=#{pmpid}
+	</select>
+	<select id="jia" resultType="com.accp.vo.jingpaivo">
+		SELECT j.jpsj,j.jpjg,u.username FROM jl j JOIN USER u ON j.userid=u.userid WHERE j.pmpid=#{pmpid} ORDER BY j.jpjg DESC LIMIT 0,1
+	</select>
+	<select id="jieshupmp" resultType="com.accp.vo.jieshupmpvo">
+		SELECT p.`pmpname`,p.`pmpkssj`,p.`pmpjssj`,p.`pmpqpj`,MAX(j.jpjg) AS jpjg,u.`username` FROM `jl` AS j,`pmp` AS p,`user` AS u
+		WHERE j.`pmpid`=p.`pmpid` AND j.`userid`=u.`userid` AND NOW()>p.`pmpjssj` GROUP BY p.`pmpname`
+	</select>
+	
+	
+	
+	<resultMap id="BaseResultMap" type="com.accp.vo.jingpaizhongpmpvo" >
+	    <!-- <id column="pmpid" property="pmpid" jdbcType="INTEGER" />
+	    <result column="pmpname" property="pmpname" jdbcType="VARCHAR" />
+	    <result column="pmpkssj" property="pmpkssj" jdbcType="DATE" />
+	    <result column="pmpjssj" property="pmpjssj" jdbcType="DATE" />
+	    <result column="pmpqpj" property="pmpqpj" jdbcType="VARCHAR" /> -->
+	    <collection property="list" column="pmpid" select="chalist"></collection>
+  	</resultMap>
+  	<sql id="Base_Column_List" >
+    	pmpid,pmpname,pmpkssj,pmpjssj,pmpqpj
+    </sql>
+    <select id="chalist" resultType="com.accp.vo.listvo">
+    	SELECT u.`username`,j.`jpjg` FROM `jl` AS j,`pmp` AS p,`user` AS u
+		WHERE j.`pmpid`=p.`pmpid` AND j.`userid`=u.`userid` AND p.`pmpid`=#{pmpid}
+    </select>
+	<select id="jingpaizhongpmp" resultMap="BaseResultMap" >
+    	SELECT 
+    	<include refid="Base_Column_List" />
+    	FROM pmp
+    	WHERE NOW() &lt; pmpjssj AND NOW() &gt; pmpkssj
+  </select>
+</mapper>

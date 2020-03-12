@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.accp.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.accp.pojo.User" >
+    <id column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="usermm" property="usermm" jdbcType="VARCHAR" />
+    <result column="usersfz" property="usersfz" jdbcType="VARCHAR" />
+    <result column="userdh" property="userdh" jdbcType="VARCHAR" />
+    <result column="userdz" property="userdz" jdbcType="VARCHAR" />
+    <result column="useryzbh" property="useryzbh" jdbcType="VARCHAR" />
+    <result column="usersf" property="usersf" jdbcType="INTEGER" />
+    <result column="userwt" property="userwt" jdbcType="VARCHAR" />
+    <result column="userda" property="userda" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    userid, username, usermm, usersfz, userdh, userdz, useryzbh, usersf, userwt, userda
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.accp.pojo.User" >
+    insert into user (userid, username, usermm, 
+      usersfz, userdh, userdz, 
+      useryzbh, usersf, userwt, 
+      userda)
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{usermm,jdbcType=VARCHAR}, 
+      #{usersfz,jdbcType=VARCHAR}, #{userdh,jdbcType=VARCHAR}, #{userdz,jdbcType=VARCHAR}, 
+      #{useryzbh,jdbcType=VARCHAR}, #{usersf,jdbcType=INTEGER}, #{userwt,jdbcType=VARCHAR}, 
+      #{userda,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.accp.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="usermm != null" >
+        usermm,
+      </if>
+      <if test="usersfz != null" >
+        usersfz,
+      </if>
+      <if test="userdh != null" >
+        userdh,
+      </if>
+      <if test="userdz != null" >
+        userdz,
+      </if>
+      <if test="useryzbh != null" >
+        useryzbh,
+      </if>
+      <if test="usersf != null" >
+        usersf,
+      </if>
+      <if test="userwt != null" >
+        userwt,
+      </if>
+      <if test="userda != null" >
+        userda,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usermm != null" >
+        #{usermm,jdbcType=VARCHAR},
+      </if>
+      <if test="usersfz != null" >
+        #{usersfz,jdbcType=VARCHAR},
+      </if>
+      <if test="userdh != null" >
+        #{userdh,jdbcType=VARCHAR},
+      </if>
+      <if test="userdz != null" >
+        #{userdz,jdbcType=VARCHAR},
+      </if>
+      <if test="useryzbh != null" >
+        #{useryzbh,jdbcType=VARCHAR},
+      </if>
+      <if test="usersf != null" >
+        #{usersf,jdbcType=INTEGER},
+      </if>
+      <if test="userwt != null" >
+        #{userwt,jdbcType=VARCHAR},
+      </if>
+      <if test="userda != null" >
+        #{userda,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.accp.pojo.User" >
+    update user
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="usermm != null" >
+        usermm = #{usermm,jdbcType=VARCHAR},
+      </if>
+      <if test="usersfz != null" >
+        usersfz = #{usersfz,jdbcType=VARCHAR},
+      </if>
+      <if test="userdh != null" >
+        userdh = #{userdh,jdbcType=VARCHAR},
+      </if>
+      <if test="userdz != null" >
+        userdz = #{userdz,jdbcType=VARCHAR},
+      </if>
+      <if test="useryzbh != null" >
+        useryzbh = #{useryzbh,jdbcType=VARCHAR},
+      </if>
+      <if test="usersf != null" >
+        usersf = #{usersf,jdbcType=INTEGER},
+      </if>
+      <if test="userwt != null" >
+        userwt = #{userwt,jdbcType=VARCHAR},
+      </if>
+      <if test="userda != null" >
+        userda = #{userda,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.accp.pojo.User" >
+    update user
+    set username = #{username,jdbcType=VARCHAR},
+      usermm = #{usermm,jdbcType=VARCHAR},
+      usersfz = #{usersfz,jdbcType=VARCHAR},
+      userdh = #{userdh,jdbcType=VARCHAR},
+      userdz = #{userdz,jdbcType=VARCHAR},
+      useryzbh = #{useryzbh,jdbcType=VARCHAR},
+      usersf = #{usersf,jdbcType=INTEGER},
+      userwt = #{userwt,jdbcType=VARCHAR},
+      userda = #{userda,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>
